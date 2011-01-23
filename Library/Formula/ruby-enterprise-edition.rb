@@ -14,16 +14,20 @@ class RubyEnterpriseEdition <Formula
   end
 
   def install
+    readline = Formula.factory('readline').prefix
+
     fails_with_llvm "fails with LLVM"
     args = ['./installer', "--auto", prefix, '--no-tcmalloc']
     args << '-c' << '--enable-shared' if ARGV.include? '--enable-shared'
+    # Configure will complain that this is an unknown option, but it is actually OK
+    args << '-c' << "--with-readline-dir=#{readline}"
     system *args
   end
 
   def caveats; <<-EOS.undent
-    Consider using RVM or Cider to manage Ruby environments:
+    Consider using RVM or Cinderella to manage Ruby environments:
       * RVM: http://rvm.beginrescueend.com/
-      * Cider: http://www.atmos.org/cider/intro.html
+      * Cinderella: http://www.atmos.org/cinderella/
 
     By default we don't compile REE as a shared library. From their documentation:
         Please note that enabling --enable-shared will make the Ruby interpreter

@@ -1,9 +1,9 @@
 require 'formula'
 
 class Npm <Formula
-  url 'http://github.com/isaacs/npm/tarball/v0.2.3'
-  homepage 'http://github.com/isaacs/npm'
-  md5 'b910a8d98c6aec87f67428ba67fa6ade'
+  url 'https://github.com/isaacs/npm/tarball/v0.2.11-5'
+  homepage 'http://npmjs.org/'
+  md5 '7f62aa24794a805d8d61da93786e3d05'
   head 'git://github.com/isaacs/npm.git'
 
   depends_on 'node'
@@ -52,6 +52,9 @@ EOS
 
     # install the wrapper executable
     (bin+"npm").write executable
+
+    # bash-completion
+    (prefix+'etc/bash_completion.d').install libexec+'npm-completion.sh'
   end
 
   def caveats; <<-EOS.undent

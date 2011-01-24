@@ -6,6 +6,7 @@ class Mutt <Formula
   md5 '027cdd9959203de0c3c64149a7ee351c'
 
   depends_on 'tokyo-cabinet'
+  depends_on 'gpgme'
 
   def options
     [
@@ -44,6 +45,9 @@ class Mutt <Formula
             "--enable-pop",
             "--enable-hcache",
             "--with-tokyocabinet",
+            "--enable-pgp",
+            "--enable-compressed",
+            "--enable-gpgme",
             # This is just a trick to keep 'make install' from trying to chgrp
             # the mutt_dotlock file (which we can't do if we're running as an
             # unpriviledged user)
